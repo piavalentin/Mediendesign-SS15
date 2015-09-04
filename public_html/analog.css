@@ -1,0 +1,179 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 27.05.2015, 15:27:21
+    Author     : uni
+*/
+
+
+
+a.title{}
+
+
+@media screen, handheld{
+   
+    
+    p {
+        
+    }
+
+div.logo{
+    //position: fixed;
+    //z-index: 99;
+    //top:30px; 
+    //left:90px;
+    display: none !important;
+/*    width:250px;
+    height:163px;
+    background-color:white;
+    background-attachment: scroll;*/
+}
+
+.logo #normalmono{display:none;}
+
+
+
+
+div.warenkorb{
+/*    font-size: 18px;
+    font-family: Arial;
+    color: white;
+    letter-spacing:2px;*/
+    position:absolute; 
+    //z-index:180;
+    top:400px;
+    left:40px;
+    
+}
+
+div.warenkorbsymbol{
+   display:none;
+}
+
+
+div.navigation{
+    position: absolute;
+    left: 30px;
+    top: 60px;
+    font-family: Helvetica;
+    font-size: 20px;
+}
+
+
+div.holzbild{
+   display:none;
+}  
+
+
+    
+
+
+
+
+div.newsfeed{
+    position:absolute;
+    z-index: 96;
+    left: 50px;
+    top: 520px;
+    width: 150px;
+    height: 140px;
+    overflow: auto;
+    background: transparent;
+    font-family: Helvetica;
+    font-size: 20px;
+    
+/*    font-family: Arial;
+    font-size: 22px;
+    font-style: italic;
+    letter-spacing: 2px;
+    line-height: 180%;*/
+    text-align: justify;
+ 
+}
+
+
+div.trenner{
+   display:none;
+}
+
+div.shop{
+    position: absolute;
+    top:40px;
+    left:15%;
+    width: 60%;
+    height: auto;
+    background-color: transparent;
+    font-family: Helvetica;
+    font-size: 20px;
+    
+}
+
+
+.shop p{
+        font-family: Helvetica;
+        font-size: 20px;
+}
+
+.shop img{
+   display:none;
+}
+
+.shop #platzhalter, #platzhalter2{
+    width:5%;
+}
+
+.shop #text{
+    width:60%;
+}
+
+.shop #kaufen, #kaufen2, #kaufen3, #kaufen4{
+    width:20%;
+}
+
+
+.shop tr td{
+ 
+}
+
+div.bottom{
+   position: absolute;
+   top:20px;
+   left:50px;
+   //width:150px;
+   height: 30px;
+   background-color: transparent;
+   font-family: Helvetica;
+   font-size: 30px;
+   letter-spacing: 2px;
+   //background-attachment: scroll;
+/*   
+   font-family: Arial;
+   font-size: 9px;
+   letter-spacing: 2px;
+   text-align: center;
+   line-height: 240%;*/
+}
+
+.copyright{
+    display:none;
+}
+
+
+
+
+
+@media print{
+    div.logo{
+       position:absolute;
+       left: 10px;
+    }
+    
+    div.bottom{
+        width: 100%;
+    }
+  
+}
+}
