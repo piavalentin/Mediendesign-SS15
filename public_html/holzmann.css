@@ -12,9 +12,9 @@ and open the template in the editor.
 
 a.title{}
 
-
+@import url(https://fonts.googleapis.com/css?family=Raleway);
 @media screen, handheld{
-   
+
     
 
 
@@ -55,8 +55,10 @@ div.navigation {
 }
 
 div.warenkorb{
-    font-size: 18px;
-    font-family: Arial;
+    font-size: 20px;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
     color: white;
     letter-spacing:2px;
     position:fixed; 
@@ -82,10 +84,13 @@ div.warenkorbsymbol{
 
 
 div.navmenu {
-  font-size:16px;
-  font-family: Arial;
+  font-size:20px;
+  //font-family: Arial;
   
-  letter-spacing: 2px;
+  //letter-spacing: 2px;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
   
   position:fixed; 
   width:85%;
@@ -210,10 +215,15 @@ div.newsfeed{
     overflow: auto;
     background: rgba(255,255,255, 0.5);
     
-    font-family: Arial;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    
+
+    //font-family: Arial;
     font-size: 22px;
-    font-style: italic;
-    letter-spacing: 2px;
+    //font-style: italic;
+    //letter-spacing: 2px;
     line-height: 180%;
     text-align: justify;
  
@@ -256,11 +266,15 @@ div.shop{
 }
 
 .shop #text{
-    width:60%;
+    width:30%;
 }
 
 .shop #kaufen, #kaufen2, #kaufen3, #kaufen4{
     width:20%;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
 }
 
 
