@@ -8,21 +8,35 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="holzmann.css" type="text/css" title="standard">
+        <style type="text/css"> @import url("druck.css") print; </style>
         <link rel="alternate stylesheet mono" type="text/css" href="mono.css" title="mono" />
         <link rel="alternate stylesheet analog" type="text/css" href="analog.css" title="analog" />
-        <style type="text/css"> @import url("druck.css") print; </style>
-        
         <script type="text/javascript" src="styleswitcher.js"></script>
+        <script type="text/javascript" src="canvas.js"></script>
+            
+        <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
         
         
+        
+        <style>
+            .newsfeed, .trenner, .holzbild{
+                display: none;
+            }
+            
+            
+            div.impressum{
+                position:absolute;
+            }
+        </style>
     </head>
     <body>
         <div id="wrapper">
         <!-- Logo -->
         <div class="logo">
-            <a id="normalmono" href="index.html"><img src="platzhalter.jpg" alt="Brennholz Herzmann"></a>
+            <a id="normalmono" href="index.html"><img id ="logobild" src="logoweiss.png" alt="Brennholz Herzmann" height="50px" width="200px"></a>
             <p id="analog"> BRENNHOLZ HERZMANN </p>
         </div>
+<!--        <div id="print"></div>-->
         
         
        
@@ -43,7 +57,7 @@
         <div class="navmenu" id="navmenu">
             <ul>
               <li class="topmenu">
-               <a href="index.html#Shop">Startseite</a>
+               <a href="index.html#shop">Startseite</a>
                <ul>
                   
               </ul>
@@ -52,24 +66,25 @@
             <li class="topmenu">
               <a href="info.html">Über uns</a>
               <ul>
+                <li class="submenu"><a href="info.html#derpeter">Der Peter</a></li>
                <li class="submenu"><a href="info.html#Idee">Die Idee</a></li>
                <li class="submenu"><a href="info.html#Region">Region</a></li>
              </ul>
             </li>
       
             <li class="topmenu">
-              <a href="bestellen.html">Bestellen</a>
+              <a href="bestellen.html#shop">Bestellen</a>
                 <ul>
                   <li class="submenu"><a href="bestellen.html#Sondermengen">Sondermengen</a></li>
                 </ul>
               </li>
 
               <li class="topmenu">
-                <a href="#kontakt">Kontakt</a>
-                <ul>
-                  <li class="submenu"><a href="kontakt.html#Anfahrt">Anfahrt</a></li>
+                <a href="kontakt.html">Kontakt</a>
+                <!--<ul>
+                  <li class="submenu"><a href="kontakt.html">Anfahrt</a></li>
                 
-                </ul>
+                </ul>-->
               </li>
 
               <li class="topmenu">
@@ -78,17 +93,17 @@
                  
                 </ul>
               </li>
-
+<!--
               <li class="topmenu">
                   <a href="">Switch</a>
                 <ul>
                   <li class="submenu"><a href="#" onclick="setActiveStyleSheet('standard'); return false;">Normal</a></li>
                   <li class="submenu"><a href="#" onclick="setActiveStyleSheet('mono'); return false;">Monochrom</a></li>
-                  <li class="submenu"><a href="#" onclick="setActiveStyleSheet('analog'); return false;">Analog</a></li>
+                  <li class="submenu"><a href="#" onclick="setActiveStyleSheet('analog'); return false;">Ohne Farbe, größere Schrift</a></li>
                 </ul>
               </li>
       
-
+-->
             </ul>
   </div>
         </div>
@@ -96,16 +111,17 @@
         
         <!-- Hauptcontainer -->
         
-        <div class="holzbild"></div>
+        <div class="holzbild">
+            <canvas id="canvas" width="900" height="600"></canvas>
+        </div>
         
         
-        <!-- <div class="slide"></div> -->
+         <div class="slide"></div> 
         
         
         
         <div class="newsfeed">
-            Lorem ipsum dolor sit amet,consetetur sadipscing elitr, 
-            sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
+            <p> Jetzt im Angebot: 20% Rabatt auf die Holzart 'WILDE EICHE'! </p>
             
             
             
@@ -117,27 +133,16 @@
         
         
         <!-- Shop Container / unterschiedlich -->
-        <div class="shop" id="shop">
+        <div class="impressum">
             
-                <p></p>
-                <p></p>
+            <br><p>
             <table>
-                <tr><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th></tr>
-                <tr><td id="bild"><img src="http://lorempixel.com/200/140/abstract/Dummy-Text" alt="Brennholz Herzmann"></td><td id="platzhalter">&nbsp;</td><td id="text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</td><td id="platzhalter2">&nbsp;</td><td id="kaufen">Lorem ipsum dolor</td></tr>
-                
-                <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-                <tr><td><img src="http://lorempixel.com/200/140/abstract/Dummy-Text" alt="Brennholz Herzmann"></td><td>&nbsp;</td><td>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</td><td>&nbsp;</td><td id="kaufen2">Lorem ipsum dolor</td></tr>
-                
-                <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-                <tr><td><img src="http://lorempixel.com/200/140/abstract/Dummy-Text" alt="Brennholz Herzmann"></td><td>&nbsp;</td><td>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</td><td>&nbsp;</td><td id="kaufen3">Lorem ipsum dolor</td></tr>
-                
-                <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-                <tr><td><img src="http://lorempixel.com/200/140/abstract/Dummy-Text" alt="Brennholz Herzmann"></td><td>&nbsp;</td><td>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</td><td>&nbsp;</td><td id="kaufen4">Lorem ipsum dolor</td></tr>
-             
-            </table>
+                <tr><th id="linkespalte">&nbsp;</th><th>
+            <h1>Impressum</h1>Angaben gem&auml;&szlig; &sect; 5 TMG<br/><br/>Muster, Test<br/>Musterstra&szlig;e 77<br/>00000 Musterstadt<br/><h2>Kontakt</h2>Telefon: 01111111111<br/>E-Mail: <a href="mailto:muster@muster.muster">muster@muster.muster</a><br/>Internetadresse: <a href="http://www.brennholzherzmann.de" target="_blank">brennholzherzmann.de</a><br/><h2>Quellenangaben f&uuml;r die verwendeten Bilder und Grafiken</h2>Imagestock<br/><h2>Haftungsausschluss</h2>Haftung f&uuml;r Inhalte<br/>Die Inhalte unserer Seiten wurden mit gr&ouml;&szlig;ter Sorgfalt erstellt. F&uuml;r die Richtigkeit, Vollst&auml;ndigkeit und Aktualit&auml;t der Inhalte k&ouml;nnen wir jedoch keine Gew&auml;hr &uuml;bernehmen. Als Diensteanbieter sind wir gem&auml;&szlig; &sect; 7 Abs.1 TMG f&uuml;r eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach &sect;&sect; 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, &uuml;bermittelte oder gespeicherte fremde Informationen zu &uuml;berwachen oder nach Umst&auml;nden zu forschen, die auf eine rechtswidrige T&auml;tigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unber&uuml;hrt. Eine diesbez&uuml;gliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung m&ouml;glich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.<br/><br/>Haftung f&uuml;r Links<br/>Unser Angebot enth&auml;lt Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb k&ouml;nnen wir f&uuml;r diese fremden Inhalte auch keine Gew&auml;hr &uuml;bernehmen. F&uuml;r die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf m&ouml;gliche Rechtsverst&ouml;&szlig;e &uuml;berpr&uuml;ft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.<br/><br/>Urheberrecht<br/>Die durch die Seitenbetreiber erstellten bzw. verwendeten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielf&auml;ltigung, Bearbeitung, Verbreitung und jede Art der Verwertung au&szlig;erhalb der Grenzen des Urheberrechtes bed&uuml;rfen der Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur f&uuml;r den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.<br/><br/><i>Quelle:  </i><a href="http://www.muster-vorlagen.net" target="_blank">Muster-Vorlagen.net – Impressum Generator</a><br/><br/>
+            </th><th id="rechtespalte">&nbsp;</th></table>    
+            <p></p>
                 <p></p>
-                <p></p>
-            
+        
            
         </div>
             

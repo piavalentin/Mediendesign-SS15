@@ -8,21 +8,97 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="holzmann.css" type="text/css" title="standard">
+        <style type="text/css"> @import url("druck.css") print; </style>
         <link rel="alternate stylesheet mono" type="text/css" href="mono.css" title="mono" />
         <link rel="alternate stylesheet analog" type="text/css" href="analog.css" title="analog" />
-        <style type="text/css"> @import url("druck.css") print; </style>
-        
         <script type="text/javascript" src="styleswitcher.js"></script>
+       <!-- <script type="text/javascript" src="canvas.js"></script>-->
+            
+        <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+        <script>
+        /* 
+        * To change this license header, choose License Headers in Project Properties.
+        * To change this template file, choose Tools | Templates
+        * and open the template in the editor.
+        */
+
+
+       var img = new Image();
+
+       // User Variables - customize these to change the image being scrolled, its
+       // direction, and the speed.
+
+       img.src = 'holz2.jpg';
+       var CanvasXSize = 900;
+       var CanvasYSize = 300;
+       var speed = 30; //lower is faster
+       var scale = 1.05;
+       var y = -4.5; //vertical offset
+
+       // Main program
+
+       var dx = 0.75;
+       var imgW;
+       var imgH;
+       var x = 0;
+       var clearX;
+       var clearY;
+       var ctx;
+
+       img.onload = function() {
+           imgW = img.width*scale;
+           imgH = img.height*scale;
+           if (imgW > CanvasXSize) { x = CanvasXSize-imgW; } // image larger than canvas
+           if (imgW > CanvasXSize) { clearX = imgW; } // image larger than canvas
+           else { clearX = CanvasXSize; }
+           if (imgH > CanvasYSize) { clearY = imgH; } // image larger than canvas
+           else { clearY = CanvasYSize; }
+           //Get Canvas Element
+           ctx = document.getElementById('canvas').getContext('2d');
+           //Set Refresh Rate
+           return setInterval(draw, speed);
+       };
+
+       function draw() {
+           //Clear Canvas
+           ctx.clearRect(0,0,clearX,clearY);
+           //If image is <= Canvas Size
+           if (imgW <= CanvasXSize) {
+               //reset, start from beginning
+               if (x > (CanvasXSize)) { x = 0; }
+               //draw aditional image
+               if (x > (CanvasXSize-imgW)) { ctx.drawImage(img,x-CanvasXSize+1,y,imgW,imgH); }
+           }
+           //If image is > Canvas Size
+           else {
+               //reset, start from beginning
+               if (x > (CanvasXSize)) { x = CanvasXSize-imgW; }
+               //draw aditional image
+               if (x > (CanvasXSize-imgW)) { ctx.drawImage(img,x-imgW+1,y,imgW,imgH); }
+           }
+           //draw image
+           ctx.drawImage(img,x,y,imgW,imgH);
+           //amount to move
+           x += dx;
+       }
+
+    </script>
         
+    <style>
+        .newsfeed{
+            display:none;
+        }
+    </style>
         
     </head>
     <body>
         <div id="wrapper">
         <!-- Logo -->
         <div class="logo">
-            <a id="normalmono" href="index.html"><img src="platzhalter.jpg" alt="Brennholz Herzmann"></a>
+            <a id="normalmono" href="index.html"><img id ="logobild" src="logoweiss.png" alt="Brennholz Herzmann" height="50px" width="200px"></a>
             <p id="analog"> BRENNHOLZ HERZMANN </p>
         </div>
+<!--        <div id="print"></div>-->
         
         
        
@@ -52,24 +128,25 @@
             <li class="topmenu">
               <a href="info.html">Über uns</a>
               <ul>
+               <li class="submenu"><a href="info.html#derpeter">Der Peter</a></li>
                <li class="submenu"><a href="info.html#Idee">Die Idee</a></li>
                <li class="submenu"><a href="info.html#Region">Region</a></li>
              </ul>
             </li>
       
             <li class="topmenu">
-              <a href="bestellen.html">Bestellen</a>
+              <a href="bestellen.html#shop">Bestellen</a>
                 <ul>
                   <li class="submenu"><a href="bestellen.html#Sondermengen">Sondermengen</a></li>
                 </ul>
               </li>
 
               <li class="topmenu">
-                <a href="#kontakt">Kontakt</a>
-                <ul>
-                  <li class="submenu"><a href="kontakt.html#Anfahrt">Anfahrt</a></li>
+                <a href="kontakt.html">Kontakt</a>
+                <!--<ul>
+                  <li class="submenu"><a href="kontakt.html">Anfahrt</a></li>
                 
-                </ul>
+                </ul>-->
               </li>
 
               <li class="topmenu">
@@ -78,17 +155,17 @@
                  
                 </ul>
               </li>
-
+<!--
               <li class="topmenu">
                   <a href="">Switch</a>
                 <ul>
                   <li class="submenu"><a href="#" onclick="setActiveStyleSheet('standard'); return false;">Normal</a></li>
                   <li class="submenu"><a href="#" onclick="setActiveStyleSheet('mono'); return false;">Monochrom</a></li>
-                  <li class="submenu"><a href="#" onclick="setActiveStyleSheet('analog'); return false;">Analog</a></li>
+                  <li class="submenu"><a href="#" onclick="setActiveStyleSheet('analog'); return false;">Ohne Farbe, größere Schrift</a></li>
                 </ul>
               </li>
       
-
+-->
             </ul>
   </div>
         </div>
@@ -96,7 +173,9 @@
         
         <!-- Hauptcontainer -->
         
-        <div class="holzbild"></div>
+        <div class="holzbild">
+            <canvas id="canvas" width="900" height="600"></canvas>
+        </div>
         
         
         <!-- <div class="slide"></div> -->
@@ -104,8 +183,7 @@
         
         
         <div class="newsfeed">
-            Lorem ipsum dolor sit amet,consetetur sadipscing elitr, 
-            sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
+            <p> Jetzt im Angebot: 20% Rabatt auf die Holzart 'WILDE EICHE'! </p>
             
             
             
@@ -119,22 +197,44 @@
         <!-- Shop Container / unterschiedlich -->
         <div class="shop" id="shop">
             
-                <p></p>
-                <p></p>
+            <br>
             <table>
                 <tr><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th></tr>
-                <tr><td id="bild"><img src="http://lorempixel.com/200/140/abstract/Dummy-Text" alt="Brennholz Herzmann"></td><td id="platzhalter">&nbsp;</td><td id="text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</td><td id="platzhalter2">&nbsp;</td><td id="kaufen">Lorem ipsum dolor</td></tr>
+                <tr><td id="bild"><img src="holz.jpg" alt="Brennholz Herzmann" id="shopbild"></td><td id="platzhalter">&nbsp;</td><td id="text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</td><td id="platzhalter2">&nbsp;</td><td id="kaufen"><input type="number" min="1" max="20" value="1">kg <input type="submit" value="In den Warenkorb"></td></tr>
+                <tr><td id="woodtitle"><p>WILDE EICHE</p></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                
+                
                 
                 <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-                <tr><td><img src="http://lorempixel.com/200/140/abstract/Dummy-Text" alt="Brennholz Herzmann"></td><td>&nbsp;</td><td>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</td><td>&nbsp;</td><td id="kaufen2">Lorem ipsum dolor</td></tr>
+                <tr><td><img src="holz.jpg" alt="Brennholz Herzmann" id="shopbild"></td><td>&nbsp;</td><td>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</td><td>&nbsp;</td><td id="kaufen2"><input type="number" min="1" max="20" value="1">kg <input type="submit" value="In den Warenkorb"></td></tr>
+                <tr><td id="woodtitle"><p>FEURIGE TANNE</p></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
                 
                 <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-                <tr><td><img src="http://lorempixel.com/200/140/abstract/Dummy-Text" alt="Brennholz Herzmann"></td><td>&nbsp;</td><td>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</td><td>&nbsp;</td><td id="kaufen3">Lorem ipsum dolor</td></tr>
+                <tr><td><img src="holz.jpg" alt="Brennholz Herzmann" id="shopbild"></td><td>&nbsp;</td><td>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</td><td>&nbsp;</td><td id="kaufen3"><input type="number" min="1" max="20" value="1">kg <input type="submit" value="In den Warenkorb"></td></tr>
+                <tr><td id="woodtitle"><p>LODERNDER AHORN</p></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
                 
                 <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-                <tr><td><img src="http://lorempixel.com/200/140/abstract/Dummy-Text" alt="Brennholz Herzmann"></td><td>&nbsp;</td><td>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</td><td>&nbsp;</td><td id="kaufen4">Lorem ipsum dolor</td></tr>
-             
-            </table>
+                <tr><td><img src="holz.jpg" alt="Brennholz Herzmann" id="shopbild"></td><td>&nbsp;</td><td>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</td><td>&nbsp;</td><td id="kaufen4"><input type="number" min="1" max="20" value="1">kg <input type="submit" value="In den Warenkorb"></td></tr>
+                <tr><td id="woodtitle"><p>KÜHLE BUCHE</p></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                
+                
+                <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                <tr><td><img src="holz.jpg" alt="Brennholz Herzmann" id="shopbild"></td><td>&nbsp;</td><td>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</td><td>&nbsp;</td><td id="kaufen4"><input type="number" min="1" max="20" value="1">kg <input type="submit" value="In den Warenkorb"></td></tr>
+                <tr><td id="woodtitle"><p>SWEET BAMBOO</p></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                
+               
+                <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                <tr><td><img src="holz.jpg" alt="Brennholz Herzmann" id="shopbild"></td><td>&nbsp;</td><td>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</td><td>&nbsp;</td><td id="kaufen4"><input type="number" min="1" max="20" value="1">kg <input type="submit" value="In den Warenkorb"></td></tr>
+                <tr><td id="woodtitle"><p>WEIHNACHTSSPEZIAL</p></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                
+                
+                </table>
+                <br><br><br>
+            <p id="Sondermengen">
+                Sondermengen? <a href="kontakt.html">Kontaktieren Sie uns!</a></p>
+            <br><br><br>
+            <br><br><br>
+            <br>
                 <p></p>
                 <p></p>
             
