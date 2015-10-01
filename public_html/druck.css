@@ -18,10 +18,14 @@ and open the template in the editor.
     div.holzbild,
     div.newsfeed,
     div.holzbri,
-    div.slide
+    div.slide,
+  
+    div.bottom
+    
     {
         display:none !important;
     }
+    
     
     a.normalmono,
     img.logobild
@@ -64,16 +68,7 @@ and open the template in the editor.
         display: none !important;
     }
     
-    div.bottom{
-        position: absolute;
-        top: 220px;
-        
-        left: 20%;
-        font-size: 12px;
-        font-family: Arial;
-        
-        
-    }
+    
     
     .copyright{
         display:none;
@@ -87,6 +82,8 @@ and open the template in the editor.
         width: 100%;
         top: 180pt;
         left: 30pt;
+        
+        background-color:white;
     }
     
     
